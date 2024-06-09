@@ -82,8 +82,8 @@ class GeneticAlgorithm:
             filho2 = [x1f2, x2f2, fitnessf2]
             filho2 = self.realizar_mutacao(filho2)
 
-            self.filhos.append(filho1)
-            self.filhos.append(filho2)
+            self.children.append(filho1)
+            self.children.append(filho2)
 
 
     def selecionar_descarte(self):
