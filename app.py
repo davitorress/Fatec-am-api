@@ -6,19 +6,26 @@ app = Flask(__name__)
 @app.route('/genetic', methods=['POST'])
 def genetic():
 	dataset = request.get_json()
-	print(dataset)
 	result = algorithms.genetic_algorithm(dataset)
 	return jsonify(result), 200
 
 
 @app.route('/knn', methods=['POST'])
 def knn():
-	dataset = request.get_data('dataset')
+	file = request.files['dataset']
+	dataset = file.read()
 	result = algorithms.knn_algorithm(dataset)
 
-	return jsonify({
-		'accuracy': result,
-	}), 200
+	return jsonify(result), 200
+
+
+@app.route('/decision_tree', methods=['POST'])
+def decision_tree():
+	file = request.files['dataset']
+	dataset = file.read()
+	result = algorithms.decision_tree_algorithm(dataset)
+
+	return jsonify(result), 200
 
 
 if __name__ == '__main__':
